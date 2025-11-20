@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حاسبة مؤشر كتلة الجسم (BMI)</title>
+    <style>
+        /* CSS للتصميم الخفيف مع خلفيات صور */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7f6; /* لون خلفية احتياطي */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            /* خلفية صورة لكامل الصفحة */
+            background-image: url('مسار_صورة_الخلفية_الرئيسية.jpg'); /* ضع مسار صورتك هنا */
+            background-size: cover; /* تغطية كاملة للخلفية */
+            background-position: center; /* توسيط الصورة */
+            background-attachment: fixed; /* لتثبيت الصورة أثناء التمرير */
+            color: #333; /* لون نص افتراضي ليكون واضحاً على الخلفية */
+        }
+
+        .container {
+            background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء شبه شفافة للحاوية */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* ظل أوضح قليلاً */
+            width: 100%;
+            max-width: 450px; /* زيادة عرض الحاوية قليلاً */
+            text-align: center;
+            backdrop-filter: blur(5px); /* تأثير ضبابي على الخلفية وراء الحاوية (مظهر عصري) */
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 25px;
+            font-size: 1.8em; /* تكبير الخط قليلاً */
+        }
+
+        /* تنسيق الصورة */
+        .college-logo {
+            max-width: 150px; /* حجم أقصى مناسب للشعار */
+            height: auto;
+            margin-bottom: 25px; /* مسافة أسفل الشعار */
+            display: block; /* لجعلها تأخذ سطرًا كاملاً وتتوسط */
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: bold;
+            text-align: right;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            box-sizing: border-box;
+            text-align: right;
+            background-color: #f9f9f9; /* خلفية خفيفة لحقول الإدخال */
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1em; /* تكبير خط الزر قليلاً */
+            transition: background-color 0.3s ease, transform 0.2s ease; /* إضافة تأثير للتحول */
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px); /* تأثير بسيط عند التحويم */
+        }
+
+        #result {
+            margin-top: 30px;
+            padding: 15px;
+            border-radius: 8px; /* تدوير حواف أكثر */
+            text-align: center;
+            font-size: 1.3em; /* تكبير خط النتيجة */
+            color: #2c3e50;
+            
+            /* خلفية صورة لقسم النتيجة */
+            background-image: url(''); /* ضع مسار صورتك هنا */
+            background-size: cover;
+            background-position: center;
+            background-color: rgba(232, 246, 248, 0.8); /* لون احتياطي وشبه شفاف */
+            min-height: 60px; /* زيادة ارتفاع قسم النتيجة */
+            display: flex; /* ليتوسط المحتوى عمودياً */
+            align-items: center;
+            justify-content: center;
+            flex-direction: column; /* ليكون النص فوق بعضه */
+            line-height: 1.6; /* تباعد الأسطر */
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /* ظل خفيف للنص ليظهر بوضوح */
+        }
+        
+        #result strong, #result span {
+            color: #1a5276; /* لون مميز للنتائج */
+        }
+
+        .error {
+            color: #e74c3c;
+            font-weight: bold;
+            background-color: rgba(255, 255, 255, 0.9); /* خلفية بيضاء للخطأ */
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>حاسبة مؤشر كتلة الجسم (BMI)</h1>
+        
+        <img src="photo_5834928426031188995_x.jpg" alt="شعار الكلية" class="college-logo">
+        
+
+        <label for="weight">الوزن (بالكيلوغرام):</label>
+        <input type="text" id="weight" placeholder="أدخل وزنك بالكيلوغرام (مثال: 70.5)" required inputmode="decimal">
+
+        <label for="height">الطول (بالمتر):</label>
+        <input type="text" id="height" placeholder="أدخل طولك بالمتر (مثال: 1.75)" required inputmode="decimal">
+
+        <button onclick="calculateBMI()">احسب مؤشر كتلة الجسم</button>
+
+        <div id="result">
+            سيظهر الناتج هنا
+        </div>
+    </div>
+
+    <script>
+        /* (احتفظ بكود JavaScript الأخير هنا كما هو لم يتم تغييره) */
+        function calculateBMI() {
+            const resultDiv = document.getElementById('result');
+
+            const cleanInput = (value) => {
+                if (!value) return '';
+                let cleaned = value.trim().replace(/[,،]/g, '.');
+                const parts = cleaned.split('.');
+                if (parts.length > 2) {
+                    cleaned = parts[0] + '.' + parts.slice(1).join('');
+                }
+                return cleaned;
+            };
+
+            const weightInput = document.getElementById('weight').value;
+            const heightInput = document.getElementById('height').value;
+
+            const weightCleaned = cleanInput(weightInput);
+            const heightCleaned = cleanInput(heightInput);
+
+            const weight = parseFloat(weightCleaned);
+            const height = parseFloat(heightCleaned);
+
+            if (isNaN(weight) || isNaN(height) || weight <= 0 || height <= 0 || height > 3) {
+                resultDiv.innerHTML = '<span class="error">الرجاء إدخال أرقام صحيحة وموجبة. تأكد من إدخال الطول بالمتر (مثال: 1.75) ولا يتجاوز 3 أمتار.</span>';
+                return;
+            }
+
+            const bmi = weight / (height * height);
+
+            const bmiResult = bmi.toFixed(2);
+            let interpretation = '';
+
+            if (bmi < 18.5) {
+                interpretation = 'نقص في الوزن';
+            } else if (bmi >= 18.5 && bmi <= 24.9) {
+                interpretation = 'وزن صحي';
+            } else if (bmi >= 25 && bmi <= 29.9) {
+                interpretation = 'زيادة في الوزن';
+            } else {
+                interpretation = 'سمنة';
+            }
+
+            resultDiv.innerHTML = `مؤشر كتلة الجسم (BMI) هو: <strong>${bmiResult}</strong><br>الحالة: <span>${interpretation}</span>`;
+        }
+    </script>
+</body>
+</html>
